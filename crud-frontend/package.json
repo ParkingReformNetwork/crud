@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel ./src/index.html",
+    "start": "set PORT=3000 && parcel ./src/index.html",
     "build": "rm -rf dist; parcel build --detailed-report",
     "test": "echo \"Error: no test specified\" && exit 1",
     "fmt": "prettier --write .",
-    "fix": "prettier --write src/; eslint --fix src/",
+    "fix": "prettier --write .; eslint --fix .",
     "lint": "prettier --check ."
   },
   "source": "src/index.html",
@@ -18,7 +18,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "LICENSE",
   "bugs": {
     "url": "https://github.com/ParkingReformNetwork/crud/issues"
   },
