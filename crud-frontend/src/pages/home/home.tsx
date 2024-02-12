@@ -5,9 +5,9 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PRN_LOGO from "../../../public/imgs/PRN_logo.png";
 import "./home.scss";
+import Login from "./../../components/login/login";
 
 export default function HomePage() {
   return (
@@ -34,6 +34,7 @@ export default function HomePage() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <Login />
         </Box>
       </Grid>
     </Grid>

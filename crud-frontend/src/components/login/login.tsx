@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { createClient } from '@supabase/supabase-js';
-import { ConnectingAirportsOutlined, SettingsSuggestRounded } from "@mui/icons-material";
-// import 'dotenv/config';
-
-// for env file
-// require('dotenv').config();
+import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_PUBLIC_ANON_KEY, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: true,
-    detectSessionInUrl: false
+	auth: {
+		autoRefreshToken: true,
+		persistSession: true,
+		detectSessionInUrl: true
   }
 });
 
@@ -36,58 +30,23 @@ function Login() {
 
     document.body.appendChild(script);
 
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-      setUser(session?.user ?? null);
-    });
-
     return () => {
       document.body.removeChild(script);
     }
   }, []);
 
-  // useEffect(() => {
-  //   const {data, error} = await supabase.auth.getSession();
-
-  //   console.log(data);
-  // }, []);
-
-  const navigate = useNavigate();
-
   window.handleSignInWithGoogle = async(response) => {
-    console.log("Encoded JWT ID Token: ", response.credential);
+	try {
+		const { data, error } = await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: {
+      redirectTo: 'http://localhost:3000/logged-in'
+		},
+		})
 
-    try {
-      const serverResponse = await fetch("http://localhost:8000/auth/google", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token: response.credential })
-        });
-
-        console.log(serverResponse);
-        if(serverResponse.ok) {
-          console.log("Login successful on server");
-          const {data, error} = await supabase.auth.refreshSession();
-          const {session, user} = data;
-
-          console.log(data);
-          // const {user, session} = supabase.auth.session()
-          
-          // const data = await supabase.auth.onAuthStateChange((event, session) => {
-          //   console.log(event, session);
-          // });
-
-          // console.log("Auth session: ", data);
-
-          // navigate("/logged-in");
-        } else {
-          console.log("Login failed on server");
-        }
-    } catch (error) {
-      console.error("Error sending token to server: ", error);
-    }
+	} catch (error) {
+		console.log("Error:", error);
+	}
   }
 
   return (
@@ -101,7 +60,7 @@ function Login() {
           data-auto_prompt="false">
         </div>
 
-        <div className="g_id_signin"
+        <div className="g_id_signin" 
             data-type="standard"
             data-shape="rectangular"
             data-theme="outline"
