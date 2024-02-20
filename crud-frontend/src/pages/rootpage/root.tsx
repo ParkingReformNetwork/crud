@@ -8,9 +8,7 @@ interface RootpageProps {
 const Rootpage: FC<RootpageProps> = ({ children, header }) => {
   return (
     <>
-      {/* Have a header here */}
       {children}
-      {/* Have a footer here */}
     </>
   );
 };
