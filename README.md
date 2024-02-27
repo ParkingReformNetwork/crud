@@ -1,6 +1,6 @@
 # CRUD Database App
 
-This code runs the CRUD Database application for volunteers to interact with, input, and update datbase information relating to the Parking Lot Map and Parking Reform Map.
+This code runs the CRUD Database application for volunteers to interact with, input, and update database information relating to the Parking Lot Map and Parking Reform Map.
 
 This project utilizes React, Typescript, and Parcel.
 

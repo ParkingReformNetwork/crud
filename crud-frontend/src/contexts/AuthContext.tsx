@@ -50,13 +50,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({children}) => {
 		};
 
 		fetchSession();
-		
-		// // fetch the current session
-		// const currentSession = supabase.auth.getSession();		
-		// if(currentSession) {
-		// 	setSession(currentSession);
-		// 	// setUser(currentSession.)
-		// }
 
 		return () => {
 			if(sessionListener.data.subscription) {

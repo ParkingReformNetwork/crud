@@ -4,8 +4,6 @@ import LoggedIn from "./pages/loggedIn/loggedIn";
 import HomePage from "./pages/home/home"
 import { AuthProvider } from "./contexts/AuthContext";
 
-// const HomePage = lazy(() => import("./pages/home/home"));
-
 const AppRoutes: FC = () => {
   return (
     <AuthProvider>
